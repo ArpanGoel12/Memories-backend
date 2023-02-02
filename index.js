@@ -3,6 +3,8 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import cors from 'cors';
+import dotenv from 'dotenv';
+dotenv.config();
 
 import postRoutes from './routes/posts.js';
 
@@ -37,7 +39,8 @@ app.use(function(req,res,next){
   next();
 });
 app.use('/posts', postRoutes);
-app.listen(4000,()=>{
+const port=process.env.PORT||4000;
+app.listen(port,()=>{
   connectnetwork();
   console.log("connection sucessful");
 });
